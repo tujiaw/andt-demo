@@ -37,7 +37,7 @@ const data = [{
   address: 'Sidney No. 1 Lake Park',
 }];
 
-class Realtime extends Component {
+class RealtimePage extends Component {
   state = {  }
   render() {
     return (
@@ -48,4 +48,4 @@ class Realtime extends Component {
   }
 }
 
-export default Realtime;
+export default RealtimePage;

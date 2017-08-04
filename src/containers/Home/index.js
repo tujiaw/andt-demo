@@ -1,20 +1,30 @@
 import React, { Component } from 'react';
 import FunctionList from './FunctionList'
-import Realtime from './Realtime'
-import History from './History'
+import RealtimePage from './RealtimePage'
+import HistoryPage from './HistoryPage'
 import { Layout, Row, Col, Button, Breadcrumb, Tabs, Input, Icon } from 'antd';
 import Style from './style'
+import history from '../../utils/history'
 const { Header, Content, Footer, Sider } = Layout;
 const { TabPane } = Tabs;
 
 const operations = (
-  <div style={{marginRight: 100}}>
+  <div>
     <Input placeholder="输入UUID搜索" prefix={<Icon type="search" />}/>
   </div>
 )
 
 class Home extends Component {
   state = {  }
+
+  onLockClick = () => {
+
+  }
+
+  onLogoutClick = () => {
+    history.push('/')
+  }
+
   render() {
     return (
       <div style={Style.root}>
@@ -24,15 +34,15 @@ class Home extends Component {
               <Col><span style={Style.title}>后台监控系统</span></Col>
               <Col>
                 <Row>
-                  <Button ghost={true} shape="circle" icon="lock" />
+                  <Button ghost={true} shape="circle" icon="lock" onClick={this.onLockClick} />
                   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                  <Button ghost={true}  shape="circle" icon="logout" />
+                  <Button ghost={true}  shape="circle" icon="logout" onClick={this.onLogoutClick} />
                 </Row>
               </Col>
             </Row>
           </Header>
           <Layout>
-            <Sider breakpoint="lg" collapsedWidth="0" style={{background: '#fff'}}>
+            <Sider breakpoint="lg" collapsedWidth="0" >
               <FunctionList />
             </Sider>
             <Content>
@@ -43,9 +53,9 @@ class Home extends Component {
                 </Breadcrumb>
               </Row>
               <Row>
-                <Tabs tabBarExtraContent={operations} style={{background: '#fff', margin: 10}}>
-                  <TabPane tab="服务实时数据" key="1"><Realtime /></TabPane>
-                  <TabPane tab="服务历史数据" key="2"><History /></TabPane>
+                <Tabs tabBarExtraContent={operations} style={{background: '#fff', margin: 10, borderRadius: 5}}>
+                  <TabPane tab="服务实时数据" key="1"><RealtimePage /></TabPane>
+                  <TabPane tab="服务历史数据" key="2"><HistoryPage /></TabPane>
                 </Tabs>
               </Row>
             </Content>
