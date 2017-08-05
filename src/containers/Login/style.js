@@ -1,7 +1,10 @@
 const Style = {}
-Style.root = {
+Style.layout = {
   height: '100vh',
-  background: '#00BCD4',
+}
+
+Style.row = {
+  height: '80vh',
 }
 
 Style.title = {

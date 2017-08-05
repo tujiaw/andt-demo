@@ -1,7 +1,8 @@
 const Style = {}
 Style.root = {
   display: 'flex',
-  height: '100vh'
+  height: '100vh',
+  overflow: 'hidden',
 }
 
 Style.title = {
