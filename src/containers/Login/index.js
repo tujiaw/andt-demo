@@ -57,10 +57,10 @@ class LoginForm extends Component {
     return (
       <Layout style={Style.layout}>
         <Row type="flex" justify="center" align="middle" style={Style.row}>
-          <Col span={6}>
+          <Col>
             <Form onSubmit={this.handleSubmit} style={Style.form}>
               <FormItem>
-                <span style={Style.title}>后台监控系统</span>
+                <span style={Style.title}>Sign in to Monitor</span>
               </FormItem>
               <FormItem>
                 {getFieldDecorator('username', {

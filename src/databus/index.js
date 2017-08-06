@@ -41,9 +41,10 @@ export function login(username, password) {
   }];
 
   setInterval(function() {
-    initData[0].uuid = String(Math.random()).slice(2, 10)
-    initData[1].uuid = String(Math.random()).slice(2, 10)
-    initData[2].uuid = String(Math.random()).slice(2, 10)
+    initData.map((item) => {
+      item.uuid = String(Math.random()).slice(2, 10)
+      return item
+    })
     store.dispatch(onlineServerAction.update(initData))
   }, 3000)
 }

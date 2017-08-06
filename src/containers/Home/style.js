@@ -10,4 +10,10 @@ Style.title = {
   color: '#fff'
 }
 
+Style.navbar = {
+  display: 'flex',
+  alignItems: 'center',
+  marginTop: 10,
+}
+
 export default Style

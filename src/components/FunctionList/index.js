@@ -19,11 +19,14 @@ class FunctionList extends Component {
     return (
         <Menu
           defaultSelectedKeys={[defaultKey]}
-          mode={'inline'}
           onSelect={this.onSelect}
+          mode="inline"
         >
           {this.props.list.map((item) => {
-            return <Menu.Item key={item.key}> <Icon type={item.icon} />{item.text}</Menu.Item>
+            return <Menu.Item key={item.key}>
+              <Icon type={item.icon} />
+              <span>{item.text}</span>
+            </Menu.Item>
           })}
         </Menu>
     );

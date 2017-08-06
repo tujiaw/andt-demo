@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Route } from 'react-router-dom'
-import { Layout, Row, Col, Button, Tooltip } from 'antd';
+import { Layout, Row, Col, Button, Tooltip, Icon } from 'antd';
 import Style from './style'
 import history from '../../utils/history'
 
@@ -18,9 +18,14 @@ const FUNCTION_LIST = [
 
 class Home extends Component {
   state = {
+    collapsed: false,
     navBar: [],
     pageContentWidth: 0
   }
+
+  onToggle = () => {
+    this.setState({ collapsed: !this.state.collapsed })
+  } 
 
   onLockClick = () => {
 
@@ -73,12 +78,16 @@ class Home extends Component {
           </Row>
         </Header>
         <Layout>
-          <Sider>
+          <Sider trigger={null} collapsible collapsed={this.state.collapsed}>
             <FunctionList defaultKey={FUNCTION_LIST[0].key} onSelectChanged={this.onSelectChanged} list={FUNCTION_LIST}/>
           </Sider>
           <Content style={{width: this.state.pageContentWidth}}>
-            <Row>
-              <NavBar list={this.state.navBar}/>
+            <Row style={Style.navbar}>
+                <Icon className="trigger"
+                  type={this.state.collapsed ? 'menu-unfold' : 'menu-fold'}
+                  onClick={this.onToggle}
+                />
+                <NavBar list={this.state.navBar}/>
             </Row>
             <Row>
               {FUNCTION_LIST.map((item, index) => {
