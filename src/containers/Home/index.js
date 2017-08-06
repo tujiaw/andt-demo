@@ -6,6 +6,8 @@ import history from '../../utils/history'
 
 import FunctionList from '../../components/FunctionList'
 import NavBar from '../../components/NavBar'
+import Spacer from '../../components/Spacer'
+import ResetPassword from '../ResetPassword'
 import LogMonitor from './LogMonitor'
 import OnlineServer from './OnlineServer'
 
@@ -65,11 +67,8 @@ class Home extends Component {
           <Row type="flex" justify="space-between">
             <Col><span style={Style.title}>MONITOR</span></Col>
             <Col>
-              <Row>
-                <Tooltip placement="topLeft" title="重设密码">
-                  <Button ghost={true} shape="circle" icon="lock" onClick={this.onLockClick} />
-                </Tooltip>
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              <Row type="flex" align="middle">
+                <ResetPassword /><Spacer width={16} />
                 <Tooltip placement="topLeft" title="退出">
                   <Button ghost={true}  shape="circle" icon="logout" onClick={this.onLogoutClick} />
                 </Tooltip>
