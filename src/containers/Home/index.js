@@ -63,7 +63,7 @@ class Home extends Component {
       <Layout style={Style.root}>
         <Header>
           <Row type="flex" justify="space-between">
-            <Col><span style={Style.title}>后台监控系统</span></Col>
+            <Col><span style={Style.title}>MONITOR</span></Col>
             <Col>
               <Row>
                 <Tooltip placement="topLeft" title="重设密码">
