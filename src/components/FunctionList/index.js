@@ -2,10 +2,6 @@ import React, { Component } from 'react';
 import { Menu, Icon } from 'antd';
 
 class FunctionList extends Component {
-  state = { 
-    currentSelectedKey: '0'
-  }
-
   onSelect = (item) => {
     if (this.props.onSelectChanged) {
       this.props.onSelectChanged(item.key)
@@ -14,14 +10,15 @@ class FunctionList extends Component {
 
   componentDidMount() {
     if (this.props.onSelectChanged) {
-      this.props.onSelectChanged(this.state.currentSelectedKey)
+      this.props.onSelectChanged(this.props.defaultKey || "0")
     }
   }
 
   render() {
+    const defaultKey = this.props.defaultKey || "0"
     return (
         <Menu
-          defaultSelectedKeys={[this.state.currentSelectedKey]}
+          defaultSelectedKeys={[defaultKey]}
           mode={'inline'}
           onSelect={this.onSelect}
         >
