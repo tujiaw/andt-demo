@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import { Menu, Icon, Switch, Layout } from 'antd';
-const { Sider } = Layout
+import { Menu, Icon } from 'antd';
 
 class FunctionList extends Component {
   state = { 

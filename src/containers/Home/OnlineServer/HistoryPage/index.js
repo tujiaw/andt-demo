@@ -1,6 +1,4 @@
 import React, { Component } from 'react';
-import { Menu, Icon, Switch, Layout } from 'antd';
-const { Sider } = Layout
 
 class HistoryPage extends Component {
   state = {  }

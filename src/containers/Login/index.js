@@ -2,9 +2,11 @@ import React, { Component } from 'react';
 import { Form, Icon, Input, Button, Checkbox, Layout, Row, Col } from 'antd';
 import Style from './style'
 import localStore from '../../utils/localStore'
-const FormItem = Form.Item;
+import { login } from '../../databus'
+import { connect } from 'react-redux'
 
-class LoginForm extends React.Component {
+const FormItem = Form.Item;
+class LoginForm extends Component {
   state = {
     username: '',
     password: '',
@@ -38,6 +40,7 @@ class LoginForm extends React.Component {
       
       console.log('Received values of form: ', values);
       if (values.username === 'admin' && values.password === 'admin') {
+        login()
         localStore.setItem('username', this.state.isremember ? values.username : '')
         localStore.setItem('password', this.state.isremember ? values.password : '')
         this.props.history.push('/monitor')
@@ -95,4 +98,17 @@ class LoginForm extends React.Component {
 }
 
 const Login = Form.create()(LoginForm);
-export default Login
+
+function mapStateToProps(state) {
+  return {
+    data: state.onlineServerRealtimeData
+  }
+}
+
+function mapDispatchToProps(dispatch) {
+  return { }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Login)
+
+//export default Login

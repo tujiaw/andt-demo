@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Route } from 'react-router-dom'
-import { Layout, Row, Col, Button, Breadcrumb, Tabs, Input, Icon, Tooltip } from 'antd';
+import { Layout, Row, Col, Button, Tooltip } from 'antd';
 import Style from './style'
 import history from '../../utils/history'
 
@@ -9,8 +9,7 @@ import NavBar from '../../components/NavBar'
 import LogMonitor from './LogMonitor'
 import OnlineServer from './OnlineServer'
 
-const { Header, Content, Footer, Sider } = Layout;
-const { TabPane } = Tabs;
+const { Header, Content, Sider } = Layout;
 
 const FUNCTION_LIST = [
   { key: '0', icon: 'mail', text: '监控日志', path: '/monitor/log', component: LogMonitor },
@@ -20,7 +19,6 @@ const FUNCTION_LIST = [
 class Home extends Component {
   state = {
     navBar: [],
-    sideMenuWidth: 300,
     pageContentWidth: 0
   }
 
@@ -44,7 +42,7 @@ class Home extends Component {
 
   onResize = () => {
     console.log(window.innerWidth)
-    this.setState({ pageContentWidth: window.innerWidth - 200})
+    this.setState({ pageContentWidth: window.innerWidth - 200}) // 200侧边栏宽度
   }
 
   componentDidMount() {
@@ -76,7 +74,7 @@ class Home extends Component {
             </Row>
           </Header>
           <Layout>
-            <Sider style={{width: this.state.sideMenuWidth}}>
+            <Sider>
               <FunctionList onSelectChanged={this.onSelectChanged} list={FUNCTION_LIST}/>
             </Sider>
             <Content style={{width: this.state.pageContentWidth}}>
