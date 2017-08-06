@@ -1,28 +1,28 @@
 import React, { Component } from 'react';
 import { Route } from 'react-router-dom'
 import { Layout, Row, Col, Button, Tooltip, Icon } from 'antd';
+
 import Style from './style'
 import history from '../../utils/history'
-
 import FunctionList from '../../components/FunctionList'
 import NavBar from '../../components/NavBar'
 import Spacer from '../../components/Spacer'
 import ResetPassword from '../ResetPassword'
 import LogMonitor from './LogMonitor'
 import OnlineServer from './OnlineServer'
+import * as WindowInfo from '../WindowInfo'
 
 const { Header, Content, Sider } = Layout;
 
 const FUNCTION_LIST = [
-  { key: '0', icon: 'mail', text: '监控日志', path: '/monitor/log', component: LogMonitor },
-  { key: '1', icon: 'calendar', text: '服务在线', path: '/monitor/online', component: OnlineServer },
+  { key: '0', icon: 'file-text', text: '监控日志', path: '/monitor/log', component: LogMonitor },
+  { key: '1', icon: 'database', text: '服务在线', path: '/monitor/online', component: OnlineServer },
 ]
 
 class Home extends Component {
   state = {
     collapsed: false,
     navBar: [],
-    pageContentWidth: 0
   }
 
   onToggle = () => {
@@ -47,22 +47,10 @@ class Home extends Component {
     }
   }
 
-  onResize = () => {
-    console.log(window.innerWidth)
-    this.setState({ pageContentWidth: window.innerWidth - 200}) // 200侧边栏宽度
-  }
-
-  componentDidMount() {
-    window.addEventListener('resize', this.onResize)
-  }
-
-  componentWillUnmount() {
-    window.removeEventListener('resize', this.onResize)
-  }
-
   render() {
     return (
       <Layout style={Style.root}>
+        <WindowInfo.EmptyWindow collapsed={this.state.collapsed} />
         <Header>
           <Row type="flex" justify="space-between">
             <Col><span style={Style.title}>MONITOR</span></Col>
@@ -77,10 +65,14 @@ class Home extends Component {
           </Row>
         </Header>
         <Layout>
-          <Sider trigger={null} collapsible collapsed={this.state.collapsed}>
+          <Sider trigger={null} 
+            collapsible collapsed={this.state.collapsed}
+            width={WindowInfo.SIDER_WIDTH}
+            collapsedWidth={WindowInfo.SIDER_COLLAPSED_WIDTH}
+          >
             <FunctionList defaultKey={FUNCTION_LIST[0].key} onSelectChanged={this.onSelectChanged} list={FUNCTION_LIST}/>
           </Sider>
-          <Content style={{width: this.state.pageContentWidth}}>
+          <Content >
             <Row style={Style.navbar}>
                 <Icon className="trigger"
                   type={this.state.collapsed ? 'menu-unfold' : 'menu-fold'}
@@ -100,4 +92,4 @@ class Home extends Component {
   }
 }
 
-export default Home;
+export default Home
